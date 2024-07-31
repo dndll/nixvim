@@ -1,6 +1,6 @@
-{
+{lib, ...}: {
   plugins.copilot-lua = {
-    enable = false; # use codeium instead
+    enable = lib.mkDefault false; # use codeium instead
     panel = {
       enabled = false;
       autoRefresh = true;
