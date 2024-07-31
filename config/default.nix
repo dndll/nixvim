@@ -12,6 +12,7 @@
 
     ./completion/cmp.nix
     ./completion/copilot.nix
+    ./completion/codeium.nix
     ./completion/lspkind.nix
 
     ./dap/dap.nix
@@ -22,8 +23,8 @@
     ./git/lazygit.nix
     # ./git/neogit.nix
 
-    ./languages/nvim-jdtls.nix
     ./languages/nvim-lint.nix
+    ./languages/rustaceanvim.nix
     ./languages/typescript-tools-nvim.nix
     ./languages/treesitter/treesitter.nix
     ./languages/treesitter/treesitter-context.nix
