@@ -58,6 +58,8 @@
     ./ui/nui.nix
 
     ./utils/better-escape.nix
+    ./utils/leap.nix
+    ./utils/auto-save.nix
     ./utils/neocord.nix
     ./utils/hardtime.nix
     ./utils/harpoon.nix

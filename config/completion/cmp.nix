@@ -28,7 +28,6 @@
              ['<C-Space>'] = cmp.mapping.complete(),
 
              ['<CR>'] = cmp.mapping.confirm({ select = true }),
-
              ['<S-CR>'] = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true }),
             })
           '';

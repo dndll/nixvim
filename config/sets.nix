@@ -5,6 +5,7 @@
   ...
 }: {
   config = {
+    colorscheme = "ayu";
     opts = {
       # Enable relative line numbers
       number = true;
