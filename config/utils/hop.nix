@@ -7,33 +7,19 @@
   };
   keymaps = [
     {
-      mode = "n";
-      key = "<Tab>";
-      action = "<cmd>BufferLineCycleNext<cr>";
-      options = {
-        desc = "Cycle to next buffer";
-      };
-    }
-    {
       key = "s";
       action.__raw = ''
         function()
-          require'hop'.hint_char1({
-            direction = require'hop.hint'.HintDirection.AFTER_CURSOR,
-            current_line_only = true
-          })
+          require'hop'.hint_words()
         end
       '';
       options.remap = true;
     }
     {
-      key = "S";
+      key = "<S-s>";
       action.__raw = ''
         function()
-          require'hop'.hint_char1({
-            direction = require'hop.hint'.HintDirection.BEFORE_CURSOR,
-            current_line_only = true
-          })
+          require'hop'.hint_lines()
         end
       '';
       options.remap = true;
