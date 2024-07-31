@@ -29,7 +29,7 @@
   keymaps = [
     {
       mode = "n";
-      key = "<leader>co";
+      key = "<leader>lo";
       action = "<cmd>TSToolsOrganizeImports<cr>";
       options = {
         desc = "Organize Imports";
@@ -37,7 +37,7 @@
     }
     {
       mode = "n";
-      key = "<leader>cR";
+      key = "<leader>lR";
       action = "<cmd>TSToolsRemoveUnusedImports<cr>";
       options = {
         desc = "Remove Unused Imports";

@@ -30,7 +30,7 @@
     }
     {
       mode = "n";
-      key = "<leader>cf";
+      key = "<leader>lf";
       action = "<cmd>lua require('conform').format()<cr>";
       options = {
         silent = true;
@@ -40,7 +40,7 @@
 
     {
       mode = "v";
-      key = "<leader>cF";
+      key = "<leader>lF";
       action = "<cmd>lua require('conform').format()<cr>";
       options = {
         silent = true;

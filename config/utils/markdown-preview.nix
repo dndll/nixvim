@@ -9,7 +9,7 @@
   keymaps = [
     {
       mode = "n";
-      key = "<leader>cp";
+      key = "<leader>lmp";
       action = "<cmd>MarkdownPreview<cr>";
       options = {
         desc = "Markdown Preview";

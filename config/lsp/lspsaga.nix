@@ -125,7 +125,7 @@
 
     {
       mode = "n";
-      key = "<leader>cw";
+      key = "<leader>lS";
       action = "<cmd>Lspsaga outline<CR>";
       options = {
         desc = "Outline";
@@ -135,7 +135,7 @@
 
     {
       mode = "n";
-      key = "<leader>cr";
+      key = "<leader>lr";
       action = "<cmd>Lspsaga rename<CR>";
       options = {
         desc = "Rename";
@@ -145,7 +145,7 @@
 
     {
       mode = "n";
-      key = "<leader>ca";
+      key = "<leader>la";
       action = "<cmd>Lspsaga code_action<CR>";
       options = {
         desc = "Code Action";
@@ -155,7 +155,7 @@
 
     {
       mode = "n";
-      key = "<leader>cd";
+      key = "<leader>ld";
       action = "<cmd>Lspsaga show_line_diagnostics<CR>";
       options = {
         desc = "Line Diagnostics";

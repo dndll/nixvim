@@ -97,7 +97,7 @@
 
     {
       mode = ["n" "v"];
-      key = "<leader>c";
+      key = "<leader>l";
       action = "+code";
     }
 
@@ -188,10 +188,28 @@
         desc = "Delete window";
       };
     }
+    {
+      mode = "n";
+      key = "<leader>wq";
+      action = "<C-W>c";
+      options = {
+        silent = true;
+        desc = "Delete window";
+      };
+    }
 
     {
       mode = "n";
       key = "<leader>w-";
+      action = "<C-W>s";
+      options = {
+        silent = true;
+        desc = "Split window below";
+      };
+    }
+    {
+      mode = "n";
+      key = "\\";
       action = "<C-W>s";
       options = {
         silent = true;
@@ -206,6 +224,24 @@
       options = {
         silent = true;
         desc = "Split window right";
+      };
+    }
+    {
+      mode = "n";
+      key = "|";
+      action = "<C-W>v";
+      options = {
+        silent = true;
+        desc = "Split window right";
+      };
+    }
+    {
+      mode = "n";
+      key = "<leader>c";
+      action = "gcc";
+      options = {
+        silent = true;
+        desc = "Comment";
       };
     }
 
