@@ -1,6 +1,6 @@
 {
   plugins.copilot-lua = {
-    enable = true;
+    enable = false; # use codeium instead
     panel = {
       enabled = false;
       autoRefresh = true;
