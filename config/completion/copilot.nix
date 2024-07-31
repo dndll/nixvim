@@ -1,4 +1,6 @@
 {lib, ...}: {
+  plugins.copilot-cmp = {enable = true;}; # copilot suggestions
+
   plugins.copilot-lua = {
     enable = lib.mkDefault false; # use codeium instead
     panel = {

@@ -8,10 +8,11 @@
 
     ./colorschemes/base16.nix
     ./colorschemes/catppuccin.nix
+    ./colorschemes/ayu.nix
     ./colorschemes/rose-pine.nix
 
     ./completion/cmp.nix
-    ./completion/copilot.nix
+    # ./completion/copilot.nix
     ./completion/codeium.nix
     ./completion/lspkind.nix
 

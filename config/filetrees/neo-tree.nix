@@ -42,23 +42,23 @@
     #       desc = "Explorer NeoTree (cwd)";
     #     };
     #   }
-    #   {
-    #     mode = "n";
-    #     key = "<leader>be";
-    #     action = ":Neotree buffers<CR>";
-    #     options = {
-    #       silent = true;
-    #       desc = "Buffer explorer";
-    #     };
-    #   }
-    #   {
-    #     mode = "n";
-    #     key = "<leader>ge";
-    #     action = ":Neotree git_status<CR>";
-    #     options = {
-    #       silent = true;
-    #       desc = "Git explorer";
-    #     };
-    #   }
+    {
+      mode = "n";
+      key = "<leader>be";
+      action = ":Neotree buffers<CR>";
+      options = {
+        silent = true;
+        desc = "Buffer explorer";
+      };
+    }
+    {
+      mode = "n";
+      key = "<leader>ge";
+      action = ":Neotree git_status<CR>";
+      options = {
+        silent = true;
+        desc = "Git explorer";
+      };
+    }
   ];
 }
