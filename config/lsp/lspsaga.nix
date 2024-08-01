@@ -55,7 +55,7 @@
       keys = {
         jump = "e";
         quit = "q";
-        toggleOrJump = "o";
+        toggleOrJump = "<Tab>";
       };
     };
     scrollPreview = {
