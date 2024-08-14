@@ -60,13 +60,13 @@
         ruff-lsp = {enable = true;};
 
         rust-analyzer = {
-          enable = true;
+          enable = false;
           installCargo = false;
           installRustc = false;
           settings = {
             checkOnSave = true;
             check = {
-              command = "clippy";
+              command = "check";
             };
             inlayHints = {
               enable = true;
