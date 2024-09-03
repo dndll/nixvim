@@ -50,17 +50,17 @@
       autoClose = true;
       autoPreview = true;
       closeAfterJump = true;
-      layout = "normal"; # normal or float
+      layout = "float"; # normal or float
       winPosition = "right"; # left or right
       keys = {
         jump = "e";
         quit = "q";
-        toggleOrJump = "<Tab>";
+        toggleOrJump = "o";
       };
     };
     scrollPreview = {
-      scrollDown = "<C-f>";
-      scrollUp = "<C-b>";
+      scrollDown = "<C-j>";
+      scrollUp = "<C-k>";
     };
   };
   keymaps = [
@@ -143,6 +143,15 @@
       };
     }
 
+    {
+      mode = "n";
+      key = "<leader>lR";
+      action = "<cmd>Lspsaga project_replace<CR>";
+      options = {
+        desc = "Old";
+        silent = true;
+      };
+    }
     {
       mode = "n";
       key = "<leader>la";

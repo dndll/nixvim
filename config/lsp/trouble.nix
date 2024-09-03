@@ -15,7 +15,7 @@
     {
       mode = "n";
       key = "<leader>xx";
-      action = "<cmd>TroubleToggle<cr>";
+      action = "<cmd>Trouble diagnostics<cr>";
       options = {
         silent = true;
         desc = "Document Diagnostics (Trouble)";
@@ -23,17 +23,17 @@
     }
     {
       mode = "n";
-      key = "<leader>xX";
-      action = "<cmd>TroubleToggle workspace_diagnostics<cr>";
+      key = "<leader>xl";
+      action = "<cmd>Trouble<cr>";
       options = {
         silent = true;
-        desc = "Workspace Diagnostics (Trouble)";
+        desc = "LSP (Trouble)";
       };
     }
     {
       mode = "n";
       key = "<leader>xt";
-      action = "<cmd>TroubleToggle todo<cr>";
+      action = "<cmd>Trouble todo<cr>";
       options = {
         silent = true;
         desc = "Todo (Trouble)";
