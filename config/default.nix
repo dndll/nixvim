@@ -1,19 +1,20 @@
 {
   # Import all your configuration modules here
   imports = [
+    ./ai/avante.nix
+
     ./sets.nix
     ./keymaps.nix
 
     ./bufferlines/bufferline.nix
 
     ./colorschemes/base16.nix
-    ./colorschemes/catppuccin.nix
     ./colorschemes/ayu.nix
-    ./colorschemes/rose-pine.nix
 
     ./completion/cmp.nix
     # ./completion/copilot.nix
-    ./completion/codeium.nix
+    # ./completion/codeium.nix
+    ./completion/sg.nix
     ./completion/lspkind.nix
 
     ./dap/dap.nix

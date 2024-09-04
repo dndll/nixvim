@@ -4,7 +4,7 @@
     cmp-buffer = {enable = true;};
     cmp-path = {enable = true;}; # file system paths
     cmp_luasnip = {enable = true;}; # snippets
-    cmp-cmdline = {enable = false;}; # autocomplete for cmdline
+    cmp-cmdline = {enable = true;}; # autocomplete for cmdline
     cmp = {
       enable = true;
       autoEnableSources = false;
@@ -38,6 +38,7 @@
         sources = {
           __raw = ''
             cmp.config.sources({
+              {name = 'cody'},
               {name = 'nvim_lsp'},
               {name = 'path'},
               {name = 'luasnip'},
