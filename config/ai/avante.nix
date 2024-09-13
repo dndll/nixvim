@@ -1,4 +1,6 @@
-{pkgs, ...}: {
+{pkgs, ...}: let
+  prebuiltPlugin = pkgs.callPackage ./plugin.nix {};
+in {
   # TODO: only if providers=copilot
   # plugins.copilot-lua = {
   #   enable = true;
@@ -9,15 +11,97 @@
 
   extraPlugins = with pkgs.vimUtils;
   with pkgs; [
-    (buildVimPlugin {
-      name = "avante.nvim";
-      src = pkgs.fetchFromGitHub {
-        owner = "yetone";
-        repo = "avante.nvim";
-        rev = "e55f9f753f2495e30f1af3a174362b39e24fb1d2";
-        hash = "sha256-JsmkDX2AZ3Gt9RA1gRhzrfE9XIwVVIf6dGdNlWJMyb4=";
-      };
-    })
+    #   (let
+    #     _name = "avante.nvim";
+    #     version = "0.54-unstable-2024-08-13";
+    #     src = pkgs.fetchFromGitHub {
+    #       owner = "yetone";
+    #       repo = "avante.nvim";
+    #       rev = "0642905c8017daeb5fd2ca2892aae22a84721c33";
+    #       hash = "sha256-Qda2Ky6VOV6tMOcpmt5/G7w5kHhtsqj4NugQZjytjSc=";
+    #     };
+    #     # TODO: luajit lua51 features
+    #     tokenizers = rustPlatform.buildRustPackage {
+    #       name = "avante-tokenizers";
+    #       inherit src;
+    #       cargoBuildFlags = ["--release" "-p" "avante-tokenizers"];
+    #       buildFeatures = ["lua54"];
+    #       cargoLock = {
+    #         lockFile = ./Cargo.lock;
+    #         outputHashes = {
+    #           "mlua-0.10.0-beta.1" = "sha256-ZEZFATVldwj0pmlmi0s5VT0eABA15qKhgjmganrhGBY=";
+    #         };
+    #       };
+    #       postInstall = ''
+    #         ls $out/lib
+    #       '';
+    #       RUSTC_BOOTSTRAP = 1;
+    #       nativeBuildInputs = [
+    #         pkg-config
+    #       ];
+    #
+    #       buildInputs =
+    #         [
+    #           libgit2
+    #           zlib
+    #           openssl
+    #         ]
+    #         ++ lib.optionals stdenv.isDarwin [
+    #           darwin.apple_sdk.frameworks.AppKit
+    #           darwin.apple_sdk.frameworks.CoreServices
+    #           darwin.apple_sdk.frameworks.SystemConfiguration
+    #         ];
+    #     };
+    #     templates = rustPlatform.buildRustPackage {
+    #       name = "avante-templates";
+    #       inherit version src;
+    #       cargoBuildFlags = ["--release" "-p" "avante-templates"];
+    #       buildFeatures = ["lua54"];
+    #       cargoLock = {
+    #         lockFile = ./Cargo.lock;
+    #         outputHashes = {
+    #           "mlua-0.10.0-beta.1" = "sha256-ZEZFATVldwj0pmlmi0s5VT0eABA15qKhgjmganrhGBY=";
+    #         };
+    #       };
+    #       RUSTC_BOOTSTRAP = 1;
+    #
+    #       nativeBuildInputs = [
+    #         pkg-config
+    #       ];
+    #
+    #       buildInputs =
+    #         [
+    #           libgit2
+    #           zlib
+    #           openssl
+    #         ]
+    #         ++ lib.optionals stdenv.isDarwin [
+    #           darwin.apple_sdk.frameworks.AppKit
+    #           darwin.apple_sdk.frameworks.CoreServices
+    #           darwin.apple_sdk.frameworks.SystemConfiguration
+    #         ];
+    #     };
+    # in
+    #     buildVimPlugin {
+    #       pname = _name;
+    #       inherit version src;
+    #
+    #       nativeBuildInputs = [
+    #         cmake
+    #         curl
+    #         cargo
+    #         rustc
+    #         # rustPlatform.cargoSetupHook
+    #       ];
+    #
+    #       postInstall = ''
+    #         mkdir -p $out/build
+    #         ln -s ${tokenizers}/lib/libavante_tokenizers.so $out/build/avante_tokenizers.so
+    #         ln -s ${tokenizers}/lib/libavante_tokenizers.so $out/build/libAvanteTokenizers-lua54.so
+    #         ln -s ${templates}/lib/libavante_templates.so $out/build/avante_templates.so
+    #         ln -s ${templates}/lib/libavante_templates.so $out/build/libAvanteTemplates-lua54.so
+    #       '';
+    #   })
     {
       plugin = vimPlugins.render-markdown;
       # config = ''
@@ -26,18 +110,47 @@
     }
     vimPlugins.plenary-nvim
     vimPlugins.nui-nvim
+    prebuiltPlugin
   ];
   extraConfigLua = ''
     require("avante_lib").load()
 
     require("avante").setup({
       ---@alias Provider "claude" | "openai" | "azure" | "gemini" | "cohere" | "copilot" | string
-      provider = "claude", -- Recommend using Claude
+      provider = "deepseek", -- Recommend using Claude
       claude = {
         endpoint = "https://api.anthropic.com",
         model = "claude-3-5-sonnet-20240620",
         temperature = 0,
         max_tokens = 4096,
+      },
+      vendors = {
+      ---@type AvanteProvider
+        ["deepseek"] = {
+          endpoint = "https://api.deepseek.com/chat/completions",
+          model = "deepseek-coder",
+          api_key_name = "DEEPSEEK_API_KEY",
+          parse_curl_args = function(opts, code_opts)
+            return {
+              url = opts.endpoint,
+              headers = {
+                ["Accept"] = "application/json",
+                ["Content-Type"] = "application/json",
+                ["Authorization"] = "Bearer " .. os.getenv(opts.api_key_name),
+              },
+              body = {
+                model = opts.model,
+                messages = require("avante.providers").copilot.parse_message(code_opts), -- you can make your own message, but this is very advanced
+                temperature = 0,
+                max_tokens = 4096,
+                stream = true, -- this will be set by default.
+              },
+            }
+          end,
+          parse_response_data = function(data_stream, event_state, opts)
+            require("avante.providers").copilot.parse_response(data_stream, event_state, opts)
+          end,
+      },
       },
       behaviour = {
         auto_suggestions = false, -- Experimental stage

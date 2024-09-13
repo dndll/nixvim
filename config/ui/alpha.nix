@@ -2,7 +2,7 @@
   plugins.alpha = {
     enable = true;
     theme = null;
-    iconsEnabled = true;
+    # iconsEnabled = true;
     layout = let
       padding = val: {
         type = "padding";

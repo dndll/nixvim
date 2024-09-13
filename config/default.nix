@@ -13,8 +13,8 @@
 
     ./completion/cmp.nix
     # ./completion/copilot.nix
-    # ./completion/codeium.nix
-    ./completion/sg.nix
+    ./completion/codeium.nix
+    # ./completion/sg.nix
     ./completion/lspkind.nix
 
     ./dap/dap.nix
@@ -33,6 +33,7 @@
     ./languages/treesitter/treesitter-textobjects.nix
     ./languages/treesitter/ts-autotag.nix
     ./languages/treesitter/ts-context-commentstring.nix
+    ./languages/solidity.nix
 
     ./lsp/conform.nix
     ./lsp/fidget.nix
