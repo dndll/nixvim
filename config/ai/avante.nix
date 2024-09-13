@@ -127,9 +127,10 @@ in {
       vendors = {
       ---@type AvanteProvider
         ["deepseek"] = {
-          endpoint = "https://api.deepseek.com/chat/completions",
+          endpoint = "https://api.deepseek.com/beta/chat/completions",
           model = "deepseek-coder",
           api_key_name = "DEEPSEEK_API_KEY",
+          max_tokens = 8192,
           parse_curl_args = function(opts, code_opts)
             return {
               url = opts.endpoint,
