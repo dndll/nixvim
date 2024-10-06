@@ -143,7 +143,7 @@ in {
                 model = opts.model,
                 messages = require("avante.providers").copilot.parse_message(code_opts), -- you can make your own message, but this is very advanced
                 temperature = 0,
-                max_tokens = 4096,
+                max_tokens = 8192,
                 stream = true, -- this will be set by default.
               },
             }
@@ -154,28 +154,28 @@ in {
       },
       },
       behaviour = {
-        auto_suggestions = false, -- Experimental stage
+        auto_suggestions = true, -- Experimental stage
         auto_set_highlight_group = true,
         auto_set_keymaps = true,
         auto_apply_diff_after_generation = false,
-        support_paste_from_clipboard = false,
+        support_paste_from_clipboard = true,
       },
       mappings = {
         --- @class AvanteConflictMappings
         diff = {
-          ours = "co",
-          theirs = "ct",
-          all_theirs = "ca",
-          both = "cb",
-          cursor = "cc",
+          ours = "qo",
+          theirs = "qt",
+          all_theirs = "qa",
+          both = "qb",
+          cursor = "qc",
           next = "]x",
           prev = "[x",
         },
         suggestion = {
-          accept = "<M-l>",
-          next = "<M-]>",
-          prev = "<M-[>",
-          dismiss = "<C-]>",
+          accept = "<D-l>",
+          next = "<D-j>",
+          prev = "<D-k>",
+          dismiss = "<D-h>",
         },
         jump = {
           next = "]]",

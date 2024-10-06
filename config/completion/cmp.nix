@@ -38,7 +38,7 @@
         sources = {
           __raw = ''
             cmp.config.sources({
-              {name = 'cody'},
+              {name = 'codeium'},
               {name = 'nvim_lsp'},
               {name = 'path'},
               {name = 'luasnip'},
